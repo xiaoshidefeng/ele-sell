@@ -3,7 +3,9 @@
 import Vue from 'vue'
 import App from './App'
 import router from './router'
-
+// import Axios from 'axios'
+//
+// Vue.use(Axios)
 
 Vue.config.productionTip = false
 router.push('/goods')

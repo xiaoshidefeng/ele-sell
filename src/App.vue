@@ -2,9 +2,9 @@
   <div id="app">
     <!-- <img src="./assets/logo.png">
     <router-view></router-view> -->
-    <v-header></v-header>
+    <v-header :seller="seller"></v-header>
 
-    <div class="tab" border-1px>
+    <div class="tab border-1px">
       <div class="tab-item">
         <router-link to="/goods">商品</router-link>
       </div>
@@ -25,9 +25,43 @@
 import header from './components/header/header.vue';
 
 export default {
+  data() {
+    return {
+      seller: {},
+      goods: {},
+      ratings: {}
+    }
+  },
   name: 'app',
   components: {
     'v-header': header,
+  },
+  created() {
+    this.getData();
+  },
+  methods: {
+    getData() {
+      axios.get('./static/data.json').then((response) => {
+        // self.tableData = response.data;
+
+        this.seller = response.data.seller;
+        this.ratings = response.data.ratings;
+        this.goods = response.data.goods;
+        console.log(this.goods);
+      })
+
+      // axios.get('./static/data.json')
+      // .then(function (response) {
+      //   console.log(response.data.seller);
+      //   this.seller = response.data;
+      //   this.ratings = response.data.ratings;
+      //   this.goods = response.data.goods;
+      //
+      // })
+      // .catch(function (error) {
+      //   console.log(error);
+      // });
+    }
   }
 }
 </script>
