@@ -23,6 +23,7 @@
 
 <script>
 import header from './components/header/header.vue';
+import goods from './components/goods/goods.vue';
 
 export default {
   data() {
@@ -35,6 +36,7 @@ export default {
   name: 'app',
   components: {
     'v-header': header,
+    'v-goods': goods
   },
   created() {
     this.getData();
@@ -42,25 +44,11 @@ export default {
   methods: {
     getData() {
       axios.get('./static/data.json').then((response) => {
-        // self.tableData = response.data;
-
         this.seller = response.data.seller;
         this.ratings = response.data.ratings;
         this.goods = response.data.goods;
-        console.log(this.goods);
       })
 
-      // axios.get('./static/data.json')
-      // .then(function (response) {
-      //   console.log(response.data.seller);
-      //   this.seller = response.data;
-      //   this.ratings = response.data.ratings;
-      //   this.goods = response.data.goods;
-      //
-      // })
-      // .catch(function (error) {
-      //   console.log(error);
-      // });
     }
   }
 }
